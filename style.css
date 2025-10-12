@@ -1,0 +1,700 @@
+:root {
+    --bg: #0f0f10;
+    --panel: #141414;
+    --card: #1b1b1b;
+    --muted: #bdbdbd;
+    --accent: #1db954;
+    --glass: rgba(255, 255, 255, 0.04);
+    --white: #fff;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+}
+
+.topbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: transparent;
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 18px 28px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 40px;
+    height: auto;
+}
+
+.home {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    /* Added cursor pointer */
+}
+
+.home:hover {
+    background-color: #333;
+}
+
+.navicons {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    margin-left: 6px;
+}
+
+.search {
+    flex: 1;
+    max-width: 720px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 10px 14px;
+    border-radius: 999px;
+    color: var(--muted);
+}
+
+.search input {
+    flex: 1;
+    background: transparent;
+    border: 0;
+    outline: 0;
+    color: var(--white);
+    /* Changed to white for better contrast */
+    font-size: 15px;
+}
+
+.top-actions {
+    margin-left: auto;
+    display: flex;
+    gap: 18px;
+    align-items: center;
+}
+
+.btn-pill {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 8px 14px;
+    border-radius: 999px;
+    color: var(--white);
+    font-weight: 600;
+    cursor: pointer;
+    /* Added cursor pointer */
+}
+
+/* layout */
+.container {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    padding: 22px;
+    gap: 24px;
+    padding-top: 100px;
+    /* Offset for fixed topbar */
+}
+
+/* left library */
+.sidebar {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+    border-radius: 14px;
+    padding: 28px;
+    min-height: 80vh;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.sidebar h3 {
+    color: var(--white);
+    margin: 6px 0 12px;
+    font-size: 18px;
+    padding-top: 15px;
+    /* Reduced top padding for better vertical spacing */
+}
+
+.create-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.015));
+    padding: 15px;
+    border-radius: 12px;
+}
+
+.create-card h4 {
+    color: var(--white);
+    margin: 0 0 9px;
+    font-weight: 700;
+}
+
+.create-card p {
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.create-btn {
+    background: var(--white);
+    color: #000;
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-weight: 700;
+    border: 0;
+    cursor: pointer;
+}
+
+.left-links {
+    padding-top: 30px;
+    /* Reduced top padding */
+    margin-top: 26px;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.left-links a {
+    color: var(--muted);
+    text-decoration: none;
+}
+
+.lang-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px;
+    border-radius: 999px;
+    border: 2px solid rgba(255, 255, 255, 0.04);
+    width: fit-content;
+    margin-top: 20px;
+    color: var(--bg);
+}
+
+/* main content */
+.main {
+    min-height: 80vh;
+    padding-bottom: 120px;
+    /* Increased bottom padding for mini-player */
+}
+
+.section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 6px 8px 18px;
+    padding-top: 20px;
+}
+
+.section-title h2 {
+    color: var(--white);
+    font-size: 32px;
+    margin: 0;
+    font-weight: 800;
+    padding-top: 0;
+    /* Removed this extra padding as it's not needed with container padding-top */
+}
+
+.showall {
+    color: var(--muted);
+    font-weight: 600;
+    padding-right: 40px;
+    cursor: pointer;
+}
+
+/* cards row */
+.row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    overflow-x: auto;
+    /* Changed to x for horizontal scroll */
+    padding-bottom: 6px;
+}
+
+.track-card {
+    width: 180px;
+    background: transparent;
+    border-radius: 10px;
+    padding: 10px;
+    position: relative;
+    flex: 0 0 auto;
+    transition: background .22s ease;
+    /* Added transition for card background */
+}
+
+.track-card:hover {
+    background: var(--card);
+    /* Added hover background */
+}
+
+.cover {
+    width: 100%;
+    height: 180px;
+    border-radius: 8px;
+    background: linear-gradient(180deg, #2b2b2b, #1b1b1b);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+    overflow: hidden;
+    position: relative;
+    transition: transform .22s ease;
+    cursor: pointer;
+}
+
+.cover .art {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    border-radius: 6px;
+    position: absolute;
+    inset: 0;
+}
+
+.cover:hover {
+    transform: translateY(-6px);
+}
+
+.play-overlay {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.5));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transform: scale(.95);
+    transition: all .18s ease;
+}
+
+.cover:hover .play-overlay {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.play-overlay .circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, var(--accent), #0fa44b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 18px;
+    box-shadow: 0 6px 18px rgba(29, 185, 84, 0.14);
+}
+
+.track-info {
+    margin-top: 12px;
+}
+
+.track-title {
+    color: var(--white);
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.track-sub {
+    color: var(--muted);
+    font-size: 13px;
+    height: 36px;
+    overflow: hidden;
+}
+
+/* artist circles row */
+.artist-card {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto;
+    cursor: pointer;
+}
+
+.artist-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #222, #111);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    transition: transform .22s ease;
+}
+
+.artist-avatar:hover {
+    transform: scale(1.05);
+}
+
+.artist-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.artist-avatar .play-small {
+    position: absolute;
+    right: 8px;
+    bottom: 8px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, var(--accent), #0fa44b);
+    /* Changed to use accent color */
+    opacity: 0;
+    transform: translateY(6px);
+    transition: all .16s;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.5);
+}
+
+.artist-avatar:hover .play-small {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.artist-name {
+    color: var(--white);
+    font-weight: 700;
+    text-align: center;
+}
+
+.artist-role {
+    color: var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+/* albums grid */
+.albums {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 18px;
+    margin-top: 8px;
+}
+
+.album-card {
+    background: var(--card);
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .22s ease;
+}
+
+.album-card:hover {
+    background: #282828;
+    /* Slightly darker on hover */
+}
+
+.album-art {
+    width: 100%;
+    height: 160px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, #333, #111);
+    margin-bottom: 10px;
+    /* **UPDATED**: To contain the play overlay */
+    position: relative;
+    overflow: hidden;
+}
+
+/* **ADDED**: Hover effect for Play Icon on Albums/Singles */
+.album-card .play-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.album-card:hover .play-overlay {
+    opacity: 1;
+}
+
+.album-card .play-overlay .circle {
+    /* Styling the play icon inside the overlay */
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(90deg, var(--accent), #0fa44b);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: 18px;
+    box-shadow: 0 4px 12px rgba(29, 185, 84, 0.5);
+    /* Subtle hover animation */
+    transform: translateY(10px);
+    transition: transform 0.3s ease-in-out;
+}
+
+.album-card:hover .play-overlay .circle {
+    transform: translateY(0);
+}
+/* **END OF ADDED CSS** */
+
+.album-title {
+    color: var(--white);
+    font-weight: 700;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.album-sub {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* mini player bottom */
+.mini-player {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 18px;
+    background: var(--glass);
+    /* Using glass variable */
+    backdrop-filter: blur(10px);
+    padding: 10px 14px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 320px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    z-index: 60;
+}
+
+.mini-info {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.mini-art {
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    background: #222;
+}
+
+.mini-title {
+    color: var(--white);
+    font-weight: 700;
+}
+
+.mini-sub {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.icon-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 20px;
+    /* Made icons slightly larger */
+}
+
+.progress {
+    width: 260px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.04);
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.progress .bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--accent), #0fa44b);
+}
+
+/* responsive */
+@media (max-width:1100px) {
+    .container {
+        grid-template-columns: 220px 1fr;
+        padding: 16px;
+        padding-top: 80px;
+        /* Adjusted padding for smaller topbar */
+    }
+
+    .track-card {
+        width: 160px;
+    }
+
+    .cover {
+        height: 156px;
+    }
+
+    .topbar {
+        padding: 12px 20px;
+    }
+
+    .search {
+        max-width: 600px;
+    }
+}
+
+@media (max-width:860px) {
+    .container {
+        grid-template-columns: 1fr;
+        padding: 12px;
+        gap: 12px;
+        padding-top: 60px;
+        /* Reduced for full mobile width */
+    }
+
+    /* **ADDED/MODIFIED**: Adjust main content padding to prevent it from hiding behind the fixed footer */
+    .main {
+        padding-bottom: 78px;
+    }
+
+    .sidebar {
+        order: 2;
+        display: none;
+        /* Sidebar hidden on mobile */
+    }
+
+    .topbar {
+        padding: 12px;
+    }
+
+    .search {
+        max-width: 100%;
+        /* Search bar takes full available width */
+    }
+
+    .top-actions {
+        display: none;
+        /* Hide top actions on mobile to save space */
+    }
+
+    .section-title h2 {
+        font-size: 24px;
+        padding-top: 0;
+    }
+
+    .showall {
+        padding-right: 12px;
+    }
+
+    .row {
+        gap: 14px;
+    }
+
+    .track-card {
+        width: 46vw;
+        /* Good size for mobile rows */
+        padding: 8px;
+    }
+
+    .cover {
+        height: 46vw;
+        /* Keep cover square */
+    }
+
+    .artist-card {
+        width: 32vw;
+        /* Smaller width for more artists */
+    }
+
+    .artist-avatar {
+        width: 90px;
+        height: 90px;
+    }
+
+    /* **MODIFIED**: .mini-player for STICKY BOTTOM and NO WRAP */
+    .mini-player {
+        position: fixed; /* For sticky behavior, explicitly set */
+        left: 0;         /* Edge to edge */
+        transform: none;
+        right: 0;        /* Edge to edge */
+        bottom: 0;       /* Stick to the very bottom */
+        width: 100%;     /* Full width */
+        min-width: unset;
+        justify-content: space-between;
+        border-radius: 0; /* Remove rounded corners for full-width bar */
+        z-index: 1000; /* Ensure it is on top of everything */
+        flex-wrap: nowrap; /* CONTROLS को नीचे जाने से रोकेगा */
+        padding: 10px 14px;
+    }
+
+    .controls {
+        gap: 8px;
+        flex-shrink: 0; /* Controls को सिकुड़ने से रोकेगा */
+    }
+
+    .progress {
+        display: none;
+        /* Hide progress bar on mobile */
+    }
+}
+
+/* small touches */
+::-webkit-scrollbar {
+    height: 8px;
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 999px;
+}
+
+.sr-only {
+    position: absolute;
+    left: -9999px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}

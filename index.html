@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Spotify-style Music UI - Demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="topbar">
+        <div class="logo">
+            <img src="Spotify_Primary_Logo_RGB_Green.png" alt="Spotify Logo" />
+        </div>
+        <div class="navicons">
+            <div class="home" title="Home"><img src="home-4-line.png" alt="Home"></div>
+        </div>
+
+        <div class="search" role="search">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="opacity:.8">
+                <path d="M21 21l-4.35-4.35" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round">
+                </path>
+                <circle cx="10.5" cy="10.5" r="5.5" stroke="rgba(255,255,255,0.6)" stroke-width="2"></circle>
+            </svg>
+            <input placeholder="What do you want to play?" aria-label="Search" />
+            <div
+                style="width:32px;height:32px;border-radius:8px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center"
+                aria-hidden="true">
+                🎧</div>
+        </div>
+
+        <div class="top-actions">
+            <a href="#" class="btn-pill">Premium</a> <a href="#" class="btn-pill">Support</a> <button class="btn-pill">Log in</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar" aria-label="Your Library">
+            <h3>Your Library <span style="float: right;">+</span></h3>
+            <div class="create-card">
+                <h4>Create your first playlist</h4>
+                <p>It’s easy, we’ll help you</p>
+                <button class="create-btn" id="createPlaylistBtn">Create playlist</button>
+            </div>
+
+            <nav class="left-links" aria-label="Legal and company links">
+                <a href="#">Legal</a>
+                <a href="#">Safety & Privacy Center</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookies</a>
+                <a href="#">About ads</a>
+                <a href="#">Accessibility</a>
+            </nav>
+
+            <button class="lang-btn" aria-label="Select language"><span>🌐</span> English</button> </aside>
+
+        <main class="main" role="main">
+            <section aria-labelledby="trending-title">
+                <div class="section-title">
+                    <h2 id="trending-title">Trending songs</h2>
+                    <a href="#" class="showall">Show all</a>
+                </div>
+
+                <div class="row" id="trendingRow" aria-label="Trending songs">
+                </div>
+            </section>
+
+            <section style="margin-top:28px" aria-labelledby="artists-title">
+                <div class="section-title">
+                    <h2 id="artists-title">Popular artists</h2>
+                    <a href="#" class="showall">Show all</a>
+                </div>
+
+                <div class="row" id="artistsRow" aria-label="Popular artists">
+                </div>
+            </section>
+
+            <section style="margin-top:28px" aria-labelledby="albums-title">
+                <div class="section-title">
+                    <h2 id="albums-title">Popular albums and singles</h2>
+                    <a href="#" class="showall">Show all</a>
+                </div>
+
+                <div class="albums" id="albumsGrid" aria-label="Albums grid">
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer class="mini-player" id="miniPlayer" role="contentinfo"> <div class="mini-info">
+            <div class="mini-art" id="miniArt" role="img" aria-label="Current track album art"></div>
+            <div>
+                <div class="mini-title" id="miniTitle">Not playing</div>
+                <div class="mini-sub" id="miniSub">—</div>
+            </div>
+        </div>
+
+        <div class="controls">
+            <button class="icon-btn" id="prevBtn" aria-label="Previous track">⏮️</button>
+            <button class="icon-btn" id="playPauseBtn" title="Play/Pause" aria-label="Play/Pause">▶️</button>
+            <button class="icon-btn" id="nextBtn" aria-label="Next track">⏭️</button>
+            <div class="progress" title="Preview progress" id="progressBar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="bar" id="progressBarFill"></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
